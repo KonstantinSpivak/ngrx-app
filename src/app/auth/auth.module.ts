@@ -6,11 +6,15 @@ import { AuthComponent } from './auth.component';
 import { AuthRoutingModule } from './auth.routing.module';
 import { SharedModule } from '../shared/shared.module';
 
+import { StoreModule } from '@ngrx/store';
+import { authReducer } from './redux/auth.reducer';
+
 @NgModule({
   imports: [
     CommonModule,
     AuthRoutingModule,
-    SharedModule
+    SharedModule,
+    StoreModule.forRoot({ user: authReducer })
   ],
   declarations: [LoginComponent, RegistrationComponent, AuthComponent]
 })
