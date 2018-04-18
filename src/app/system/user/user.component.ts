@@ -9,7 +9,7 @@ import { UserService } from '../../shared/service/user.service';
 })
 export class UserComponent implements OnInit {
 
-  users: User[] = [{ token: "ho" }, { token: "blo" }];
+  users: User[] = [{ email: "ho" }];
   constructor(private userService: UserService) { }
 
   ngOnInit() {
