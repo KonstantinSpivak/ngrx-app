@@ -12,7 +12,9 @@ export class UserService {
     constructor(private http: HttpClient, private config: ConfigService) { }
 
     auth(email: string, password: string): Observable<User> {
-        return this.http.post<User>(`${this.config.getUrl()}/auth`, { email, password })
+        //fake data
+        let fake = {id: 1, token: "12345", }
+        return this.http.post<User>(`${this.config.getUrl()}/auth`, { email, ...fake })
             .catch(this.errorFunction(error));
     }
 

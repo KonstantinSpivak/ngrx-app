@@ -6,5 +6,5 @@ export enum AuthActionsType {
 }
 export class AuthLogin implements Action {
     readonly type = AuthActionsType.LOG_IN;
-    constructor(public payload: any) { }
+    constructor(public payload: any) {}
 }

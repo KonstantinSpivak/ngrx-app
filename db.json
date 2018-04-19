@@ -8,7 +8,8 @@
   ],
   "auth": {
     "email": "s@s",
-    "password": "123"
+    "id": 1,
+    "token": "12345"
   },
   "comments": [
     {

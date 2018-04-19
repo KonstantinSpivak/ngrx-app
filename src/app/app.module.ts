@@ -13,6 +13,13 @@ import { AuthService } from './shared/service/auth.service';
 import { SystemModule } from './system/system.module';
 
 
+import { environment } from '../environments/environment';
+import { StoreModule } from '@ngrx/store';
+import { authReducer } from './auth/redux/auth.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './auth/redux/auth.effects';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -22,7 +29,10 @@ import { SystemModule } from './system/system.module';
     AuthModule,
     AppRoutingModule,
     HttpClientModule,
-    SystemModule
+    SystemModule,
+    StoreModule.forRoot({ user: authReducer }),
+    EffectsModule.forRoot([AuthEffects]),
+   !environment.production ? StoreDevtoolsModule.instrument() : []
 
   ],
   providers: [

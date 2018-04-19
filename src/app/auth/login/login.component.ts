@@ -6,6 +6,7 @@ import { Message } from '../../shared/model/message.model';
 import { AuthService } from '../../shared/service/auth.service';
 import { Store } from '@ngrx/store';
 import { AuthLogin } from '../redux/auth.actions';
+import { Router } from '@angular/router';
 
 interface AppStore {
   user: {};
@@ -23,7 +24,10 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   public message: Message;
 
-  constructor(private store: Store<AppStore>, private UserService: UserService, private authService: AuthService) { }
+  constructor(private store: Store<User>, 
+    private UserService: UserService, 
+    private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit() {
     this.message = new Message('', '');
@@ -37,11 +41,14 @@ export class LoginComponent implements OnInit {
     const formData = this.form.value;
 
     this.store.dispatch(new AuthLogin(formData));
+
     this.UserService.auth(formData.email, formData.password)
       .subscribe((user: User) => {
         this.showMessage('Login', 'success');
         this.authService.login(user);
         console.log(user)
+        this.router.navigate(['system/dashboard']);
+        
       }, (error) => {
         this.showMessage(error, 'danger');
         console.log(error)
